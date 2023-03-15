@@ -1,4 +1,5 @@
 *
-!*.gitignore
-!*.zshrc
-!*./.config/nvim/
+!.gitignore
+!.zshrc
+!README.md
+!./.config/nvim/
