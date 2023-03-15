@@ -2,4 +2,11 @@
 !.gitignore
 !.zshrc
 !README.md
-!./.config/nvim/
+!.config/
+!.config/nvim/
+!.config/nvim/*
+!.config/nvim/*/*
+!.config/nvim/*/*/*
+!.config/nvim/*/*/*/*
+!.config/nvim/*/*/*/*/*
+!.config/nvim/*/*/*/*/*/*
