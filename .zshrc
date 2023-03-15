@@ -11,6 +11,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 alias killgf="npx kill-port 3000 3001 3002"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
+alias cdnvim="cd ~/.config/nvim"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
