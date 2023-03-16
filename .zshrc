@@ -35,6 +35,7 @@ function chpwd() {
 ln -s ~/dev-environment/nvim ~/.config/nvim
 ln -s ~/dev-environment/.tmux.conf ~/.tmux.conf
 ln -s ~/dev-environment/yabai ~/.config/yabai
+ln -s ~/dev-environment/skhd ~/.config/skhd
 clear
 # * idk why but this result in a duplicate symlink directory which is ignored in .gitignore
 
