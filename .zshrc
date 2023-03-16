@@ -26,6 +26,7 @@ function chpwd() {
 
 # Create symlink for config files
 ln -s ~/dev-environment/nvim ~/.config/nvim
+# * idk why but this result in a duplicate symlink directory which is ignored in .gitignore
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
