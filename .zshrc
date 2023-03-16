@@ -22,7 +22,11 @@ function chpwd() {
     emulate -L zsh
     ls
 }
-#
+
+
+# Create symlink for config files
+ln -s ~/dev-environment/nvim ~/.config/nvim
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
