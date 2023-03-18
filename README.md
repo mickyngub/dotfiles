@@ -1,7 +1,5 @@
 # Micky's Dev Environment Files!
 
-Run the following two commands to create the symlink for .zshrc
-
-`ln -s ~/dev-environment/.zshrc ~/.zshrc`
-
-other symlinks will run automatically from inside of .zshrc
+1. Install brew (optional)
+2. Install nvim, tmux, yabai and skhd
+3. run `zsh init.sh`
