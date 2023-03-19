@@ -99,6 +99,7 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
+	use("nvim-treesitter/playground")
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
@@ -106,6 +107,15 @@ return packer.startup(function(use)
 
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+	-- harpoon
+	use("theprimeagen/harpoon")
+
+	-- undotree
+	use("mbbill/undotree")
+
+	-- fugitive
+	use("tpope/vim-fugitive")
 
 	if packer_bootstrap then
 		require("packer").sync()

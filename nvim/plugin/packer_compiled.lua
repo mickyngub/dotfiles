@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/micky/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/Users/micky/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/theprimeagen/harpoon"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/Users/micky/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -201,6 +206,11 @@ _G.packer_plugins = {
     path = "/Users/micky/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  playground = {
+    loaded = true,
+    path = "/Users/micky/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/micky/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -220,6 +230,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/micky/.local/share/nvim/site/pack/packer/start/typescript.nvim",
     url = "https://github.com/jose-elias-alvarez/typescript.nvim"
+  },
+  undotree = {
+    loaded = true,
+    path = "/Users/micky/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/micky/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-maximizer"] = {
     loaded = true,
