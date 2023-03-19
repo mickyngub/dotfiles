@@ -2,10 +2,16 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+-- Don't use arrow keys
+keymap.set({ "n", "v", "i" }, "<up>", "<nop>")
+keymap.set({ "n", "v", "i" }, "<down>", "<nop>")
+keymap.set({ "n", "v", "i" }, "<left>", "<nop>")
+keymap.set({ "n", "v", "i" }, "<right>", "<nop>")
 -- general keymaps
-
+keymap.set({ "n", "v" }, "w", "e")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("n", "<leader>w", ":w<CR>")
 
 keymap.set("n", "J", "mzJ`z")
 keymap.set("n", "<C-d>", "<C-d>zz")
