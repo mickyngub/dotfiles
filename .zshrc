@@ -24,7 +24,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 function chpwd() {
     emulate -L zsh
-    ls
+    ls -a
 }
 
 
