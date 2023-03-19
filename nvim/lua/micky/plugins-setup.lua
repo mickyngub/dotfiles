@@ -56,7 +56,6 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
-
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
@@ -117,6 +116,8 @@ return packer.startup(function(use)
 	-- fugitive
 	use("tpope/vim-fugitive")
 
+	-- multiple cursors
+	use({ "mg979/vim-visual-multi", branch = "master" })
 	if packer_bootstrap then
 		require("packer").sync()
 	end
