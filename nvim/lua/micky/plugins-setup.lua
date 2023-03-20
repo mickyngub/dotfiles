@@ -48,7 +48,7 @@ return packer.startup(function(use)
 	use("nvim-tree/nvim-tree.lua")
 
 	-- icons
-	use("kyazdani42/nvim-web-devicons")
+	use("nvim-tree/nvim-web-devicons")
 
 	-- statusline
 	use("nvim-lualine/lualine.nvim")
@@ -126,6 +126,41 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		config = function()
+			require("dashboard").setup({
+				theme = "hyper",
+				config = {
+					header = {
+						"",
+						"",
+						" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+						" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+						" ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+						" ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+						" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+						" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+						"",
+						"",
+					},
+					shortcut = {
+						{
+							icon = " ",
+							icon_hl = "@variable",
+							desc = "Files",
+							group = "Label",
+							action = "Telescope find_files",
+							key = "f",
+						},
+					},
+				},
+			})
+		end,
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
