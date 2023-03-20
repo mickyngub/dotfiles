@@ -22,6 +22,10 @@ nvimtree.setup({
 					arrow_closed = "", -- arrow when folder is closed
 					arrow_open = "", -- arrow when folder is open
 				},
+				git = {
+					unstaged = "u",
+					ignored = "󰽅",
+				},
 			},
 		},
 	},
@@ -40,5 +44,8 @@ nvimtree.setup({
 	update_focused_file = {
 		enable = true,
 		update_root = true,
+	},
+	diagnostics = {
+		enable = true,
 	},
 })
