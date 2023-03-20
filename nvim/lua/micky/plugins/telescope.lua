@@ -25,6 +25,9 @@ keymap.set("n", "<leader>ff", function()
 		builtin.find_files(opts)
 	end
 end) -- Find a file either using git files or search the filesystem.
+keymap.set("n", "<leader>FF", function()
+	builtin.find_files({ no_ignore = true, hidden = true })
+end)
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
