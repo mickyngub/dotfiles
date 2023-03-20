@@ -9,6 +9,10 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
+local keymap = vim.keymap -- for conciseness
+
+keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+
 nvimtree.setup({
 	-- change folder arrow icons
 	renderer = {

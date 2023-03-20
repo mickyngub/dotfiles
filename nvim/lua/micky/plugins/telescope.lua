@@ -18,6 +18,18 @@ end
 
 local keymap = vim.keymap
 
+keymap.set("n", "<leader>ff", function()
+	local opts = {}
+	local ok = pcall(builtin.git_files, opts)
+	if not ok then
+		builtin.find_files(opts)
+	end
+end) -- Find a file either using git files or search the filesystem.
+keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+
 -- configure telescope
 telescope.setup({
 	-- configure custom mappings
@@ -37,16 +49,3 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
-
--- telescope
-keymap.set("n", "<leader>ff", function()
-	local opts = {}
-	local ok = pcall(builtin.git_files, opts)
-	if not ok then
-		builtin.find_files(opts)
-	end
-end) -- Find a file either using git files or search the filesystem.
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
