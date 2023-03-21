@@ -37,15 +37,21 @@ eval "$(/opt/homebrew/bin/brew shellenv)"`
 
    `brew install ripgrep`
 
-6. run `zsh init.sh`
+6. Run `zsh init.sh`
+
+7. git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+8. Open tmux and `Crtl + a + Shift + i` to install tmux plugins
 
 ## Notes
 
     - remap caps lock to control
     - set `Close` shortcut for iTerm2 to `Command + Shift + w`
+    - set iTerm2 to be able to use option key to jump back and forth
 
 ## References
 
 - https://github.com/josean-dev/dev-environment-files
 - https://github.com/ThePrimeagen/init.lua
 - https://github.com/alpha2phi/neovim-for-beginner
+- https://jonnyhaynes.medium.com/jump-forwards-backwards-and-delete-a-word-in-iterm2-on-mac-os-43821511f0a
