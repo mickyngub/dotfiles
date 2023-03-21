@@ -21,6 +21,12 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
+vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#56B6C2" })
+vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#C678DD" })
+vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#ABB2BF" })
+vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#E06C75" })
+vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#E5C07B" })
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
