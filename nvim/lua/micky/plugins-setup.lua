@@ -163,6 +163,8 @@ return packer.startup(function(use)
 		requires = { "nvim-tree/nvim-web-devicons" },
 	})
 
+	use("github/copilot.vim")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
