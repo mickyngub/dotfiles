@@ -1,134 +1,95 @@
--- auto install packer if not installed
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
-local packer_bootstrap = ensure_packer() -- true if packer was just installed
-
--- autocommand that reloads neovim and installs/updates/removes plugins
--- when file is saved
-vim.cmd([[ 
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
-  augroup end
-]])
-
-local status, packer = pcall(require, "packer")
-if not status then
-	return
-end
-
-return packer.startup(function(use)
-	use("wbthomason/packer.nvim")
-
+vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = " "
+require("lazy").setup(
+{
 	-- lua functions that many plugins use
-	use("nvim-lua/plenary.nvim")
-
-	use("joshdick/onedark.vim")
-
-	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
-
-	use("szw/vim-maximizer") -- maximizes and restores current window
-
-	-- essential plugins
-	use("tpope/vim-surround")
-	use("vim-scripts/ReplaceWithRegister")
-
-	-- commenting with gc
-	use("numToStr/Comment.nvim")
-
-	-- file explorer
-	use("nvim-tree/nvim-tree.lua")
-
-	-- icons
-	use("nvim-tree/nvim-web-devicons")
-
-	-- statusline
-	use("nvim-lualine/lualine.nvim")
-
-	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
-	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
-	use("hrsh7th/cmp-buffer") -- source for text in buffer
-	use("hrsh7th/cmp-path") -- source for file system paths
-
-	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-	use("rafamadriz/friendly-snippets") -- useful snippets
-
-	-- managing & installing lsp servers, linters & formatters
-	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
-
-	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use("hrsh7th/cmp-nvim-lsp-signature-help") -- for hinting function signature
-
-	use({
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		requires = {
-			{ "nvim-tree/nvim-web-devicons" },
-			{ "nvim-treesitter/nvim-treesitter" },
+		"nvim-lua/plenary.nvim",
+		"joshdick/onedark.vim",
+		"christoomey/vim-tmux-navigator", -- tmux & split window navigation
+		"szw/vim-maximizer", -- maximizes and restores current window
+		-- essential plugins
+		"tpope/vim-surround",
+		"vim-scripts/ReplaceWithRegister",
+		-- commenting with gc
+		"numToStr/Comment.nvim",
+		-- file explorer
+		"nvim-tree/nvim-tree.lua",
+		-- icons
+		"nvim-tree/nvim-web-devicons",
+		-- statusline
+		"nvim-lualine/lualine.nvim",
+		-- fuzzy finding w/ telescope
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
+		{ "nvim-telescope/telescope.nvim", branch = "0.1.x" }, -- fuzzy finder
+		-- autocompletion
+		"hrsh7th/nvim-cmp", -- completion plugin
+		"hrsh7th/cmp-buffer", -- source for text in buffer
+		"hrsh7th/cmp-path", -- source for file system paths
+		-- snippets
+		"L3MON4D3/LuaSnip", -- snippet engine
+		"saadparwaiz1/cmp_luasnip", -- for autocompletion
+		"rafamadriz/friendly-snippets", -- useful snippets
+		-- managing & installing lsp servers, linters & formatters
+		"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
+		"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
+		-- configuring lsp servers
+		"neovim/nvim-lspconfig", -- easily configure language servers
+		"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+		"hrsh7th/cmp-nvim-lsp-signature-help", -- for hinting function signature
+		{
+			"glepnir/lspsaga.nvim",
+			branch = "main",
+			dependencies = {
+				{ "nvim-tree/nvim-web-devicons" },
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
 		},
-	})
-
-	-- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
-
-	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
-
-	-- treesitter configuration
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-	})
-	use("nvim-treesitter/playground")
-
-	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
-
+		-- enhanced lsp uis
+		"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
+		"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+		-- formatting & linting
+		"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
+		"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
+		-- treesitter configuration
+		{
+			"nvim-treesitter/nvim-treesitter",
+			build = function()
+				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+				ts_update()
+			end,
+			dependencies = { "windwp/nvim-ts-autotag" },
+		},
+	
+	"nvim-treesitter/playground",
 	-- git integration
-	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
-
+	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	-- harpoon
-	use("theprimeagen/harpoon")
-
+	"theprimeagen/harpoon",
 	-- undotree
-	use("mbbill/undotree")
-
+	"mbbill/undotree",
 	-- fugitive
-	use("tpope/vim-fugitive")
-
+	"tpope/vim-fugitive",
 	-- multiple cursors
-	use({ "mg979/vim-visual-multi", branch = "master" })
-
+	{ "mg979/vim-visual-multi", branch = "master" },
 	-- markdown preview
-	use({
+	{
 		"iamcco/markdown-preview.nvim",
-		run = function()
+		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	})
-	use({
+	},
+	{
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		config = function()
@@ -160,13 +121,13 @@ return packer.startup(function(use)
 				},
 			})
 		end,
-		requires = { "nvim-tree/nvim-web-devicons" },
-	})
-	use("dstein64/vim-startuptime")
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	"dstein64/vim-startuptime",
 	-- github copilot
-	use("github/copilot.vim")
+	"github/copilot.vim",
 	-- zen mode
-	use({
+	{
 		"folke/zen-mode.nvim",
 		config = function()
 			require("zen-mode").setup({
@@ -180,9 +141,6 @@ return packer.startup(function(use)
 				},
 			})
 		end,
-	})
+	}
+})
 
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)

@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 local keymap = vim.keymap -- for conciseness
 
 -- Don't use arrow keys
