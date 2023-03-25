@@ -163,8 +163,24 @@ return packer.startup(function(use)
 		requires = { "nvim-tree/nvim-web-devicons" },
 	})
 	use("dstein64/vim-startuptime")
-
+	-- github copilot
 	use("github/copilot.vim")
+	-- zen mode
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+				plugins = {
+					tmux = {
+						enabled = true,
+					},
+				},
+			})
+		end,
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
