@@ -1,4 +1,5 @@
-local opt = vim.opt -- for consiseness
+local opt = vim.opt -- for conciseness
+local api = vim.api -- for conciseness
 
 -- line numbers
 opt.relativenumber = true
@@ -41,3 +42,10 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 
 opt.updatetime = 50
+
+-- disable continuation of comment
+api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		opt.formatoptions = opt.formatoptions - { "c", "r", "o" }
+	end,
+})
