@@ -1,5 +1,3 @@
-local keymap = vim.keymap -- for conciseness
-
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>zm",
