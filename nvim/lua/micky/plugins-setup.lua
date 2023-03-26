@@ -141,4 +141,10 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	},
 })
