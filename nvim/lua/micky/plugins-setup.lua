@@ -72,6 +72,7 @@ require("lazy").setup({
 
 	"nvim-treesitter/playground",
 	-- git integration
+	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	-- harpoon
 	"theprimeagen/harpoon",
