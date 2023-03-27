@@ -147,4 +147,16 @@ require("lazy").setup({
 			require("fidget").setup({})
 		end,
 	},
+	{
+		"phaazon/hop.nvim",
+		tag = "v2.0.3",
+		config = function()
+			require("hop").setup()
+			vim.keymap.set("n", "s", "<CMD>HopChar1<CR>", { noremap = true })
+			vim.keymap.set("x", "s", "<CMD>HopChar1<CR>", { noremap = true })
+
+			vim.keymap.set("n", "<leader>l", "<CMD>HopLine<CR>", { noremap = true })
+			vim.keymap.set("x", "<leader>l", "<CMD>HopLine<CR>", { noremap = true })
+		end,
+	},
 })
