@@ -43,13 +43,24 @@ require("lazy").setup({
 	"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
 	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 	-- configuring lsp servers
-	"neovim/nvim-lspconfig", -- easily configure language servers
 	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
 	"hrsh7th/cmp-nvim-lsp-signature-help", -- for hinting function signature
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
+		event = "LspAttach",
+		config = function()
+			require("lspsaga").setup({
+				-- keybinds for navigation in lspsaga window
+				scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
+				-- use enter to open file with definition preview
+				definition = {
+					edit = "<CR>",
+				},
+			})
+		end,
 		dependencies = {
+			{ "neovim/nvim-lspconfig" }, -- easily configure language servers
 			{ "nvim-tree/nvim-web-devicons" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
