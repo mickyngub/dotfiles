@@ -1,5 +1,6 @@
 local opt = vim.opt -- for conciseness
 local api = vim.api -- for conciseness
+local cmd = vim.cmd -- for conciseness
 
 -- line numbers
 opt.relativenumber = true
@@ -49,3 +50,10 @@ api.nvim_create_autocmd("BufEnter", {
 		opt.formatoptions = opt.formatoptions - { "c", "r", "o" }
 	end,
 })
+
+-- Trigger `autoread` when files change on disk
+cmd("set autoread")
+cmd([[autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif]])
+
+-- Notification after file change
+cmd([[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])
