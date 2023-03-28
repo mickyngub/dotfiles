@@ -173,7 +173,22 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 		config = function()
-			require("fidget").setup({})
+			require("fidget").setup({
+				fmt = {
+					-- function to format each task line
+					task = function(task_name, message, percentage)
+						if task_name == "code_action" then
+							return false
+						end
+						return string.format(
+							"%s%s [%s]",
+							message,
+							percentage and string.format(" (%s%%)", percentage) or "",
+							task_name
+						)
+					end,
+				},
+			})
 		end,
 	},
 	{
