@@ -32,7 +32,19 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" }, -- fuzzy finder
 	-- autocompletion
-	"hrsh7th/nvim-cmp", -- completion plugin
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{
+				"roobert/tailwindcss-colorizer-cmp.nvim",
+				config = function()
+					require("tailwindcss-colorizer-cmp").setup({
+						color_square_width = 1.5,
+					})
+				end,
+			},
+		},
+	}, -- completion plugin
 	"hrsh7th/cmp-buffer", -- source for text in buffer
 	"hrsh7th/cmp-path", -- source for file system paths
 	-- snippets
