@@ -69,6 +69,11 @@ require("lazy").setup({
 				definition = {
 					edit = "<CR>",
 				},
+				finder = {
+					keys = {
+						expand_or_jump = "<CR>",
+					},
+				},
 			})
 		end,
 		dependencies = {
