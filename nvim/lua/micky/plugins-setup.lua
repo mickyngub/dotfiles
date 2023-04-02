@@ -31,8 +31,10 @@ require("lazy").setup({
 	"nvim-tree/nvim-tree.lua",
 	-- icons
 	"nvim-tree/nvim-web-devicons",
-	-- statusline
-	"nvim-lualine/lualine.nvim",
+	sdfdsf(
+		-- statusline
+		"nvim-lualine/lualine.nvim"
+	),
 	-- fuzzy finding w/ telescope
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" }, -- fuzzy finder
