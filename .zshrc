@@ -130,6 +130,7 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 alias killgf="npx kill-port 3000 3001 3002"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
+alias cdgfb="cd ~/Documents/Dev/guildfi/guildfi-app-bare"
 alias cdnvim="cd ~/.config/nvim"
 alias cddev="cd ~/dev-environment/"
 alias ls="ls -a"
