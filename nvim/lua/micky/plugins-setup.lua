@@ -203,4 +203,5 @@ require("lazy").setup({
 			vim.keymap.set("x", "<leader>l", "<CMD>HopLine<CR>", { noremap = true })
 		end,
 	},
+	"ThePrimeagen/git-worktree.nvim",
 })
