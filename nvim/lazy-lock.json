@@ -9,6 +9,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "copilot.vim": { "branch": "release", "commit": "b6e5624351ba735e25eb8864d7d22819aad00606" },
   "dashboard-nvim": { "branch": "master", "commit": "4c2b038c5cfa70f90506f1551e5fd2d040174e08" },
+  "diffview.nvim": { "branch": "main", "commit": "4a55b5e2d2c3d6bd89cd3299a9ca276d49d25463" },
   "fidget.nvim": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
   "friendly-snippets": { "branch": "main", "commit": "8d91ba2dc2421a54981115f61b914974f938fa77" },
   "git-worktree.nvim": { "branch": "master", "commit": "d7f4e2584e81670154f07ca9fa5dd791d9c1b458" },
