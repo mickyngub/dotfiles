@@ -14,14 +14,10 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 nvimtree.setup({
-	-- change folder arrow icons
+	--	change folder arrow icons
 	renderer = {
 		icons = {
 			glyphs = {
-				folder = {
-					arrow_closed = "", -- arrow when folder is closed
-					arrow_open = "", -- arrow when folder is open
-				},
 				git = {
 					unstaged = "u",
 					ignored = "󰽅",
