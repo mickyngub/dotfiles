@@ -106,7 +106,7 @@ require("lazy").setup({
 			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 			ts_update()
 		end,
-		dependencies = { "windwp/nvim-ts-autotag" },
+		dependencies = { "windwp/nvim-ts-autotag", "JoosepAlviste/nvim-ts-context-commentstring" },
 	},
 
 	"nvim-treesitter/playground",
