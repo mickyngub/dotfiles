@@ -17,6 +17,9 @@ require("lazy").setup({
 		"nvim-lua/plenary.nvim",
 		dependencies = {
 			{ "sindrets/diffview.nvim" },
+			{
+				"folke/todo-comments.nvim",
+			},
 		},
 	},
 	"joshdick/onedark.vim",
