@@ -16,6 +16,11 @@ if not typescript_setup then
 	return
 end
 
+local navbuddy_setup, navbuddy = pcall(require, "nvim-navbuddy")
+if not navbuddy_setup then
+	return
+end
+
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds for available lsp server
@@ -45,6 +50,9 @@ local on_attach = function(client, bufnr)
 		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
 		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
 		keymap.set("n", "<leader>gsd", ":TypescriptGoToSourceDefinition<CR>") -- remove unused variables (not in youtube nvim video)
+
+		navbuddy.attach(client, bufnr)
+		keymap.set("n", "<leader>nv", ":Navbuddy<CR>") -- remove unused variables (not in youtube nvim video)
 	end
 end
 
