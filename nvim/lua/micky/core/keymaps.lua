@@ -41,6 +41,8 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 keymap.set("n", "<leader>sw", "<C-w>x") -- switch window with the previous one
 keymap.set("n", "<leader>s-", "5<C-w><")
 keymap.set("n", "<leader>s=", "5<C-w>>")
+keymap.set("n", "<leader>s_", "5<C-w>-")
+keymap.set("n", "<leader>s+", "5<C-w>+")
 
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
