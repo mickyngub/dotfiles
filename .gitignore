@@ -2,3 +2,4 @@ nvim/nvim
 yabai/yabai
 skhd/skhd
 nvim/plugin/packer_compiled.lua
+.zsh_env_vars
