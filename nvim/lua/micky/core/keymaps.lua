@@ -49,3 +49,14 @@ keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+
+keymap.set({ "n", "v" }, "<leader><leader>", function()
+	local closed_windows = {}
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local config = vim.api.nvim_win_get_config(win)
+		if config.relative ~= "" then -- is_floating_window?
+			vim.api.nvim_win_close(win, false) -- do not force
+			table.insert(closed_windows, win)
+		end
+	end
+end)
