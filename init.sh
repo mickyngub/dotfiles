@@ -6,4 +6,5 @@ ln -s ~/dev-environment/nvim ~/.config/nvim
 ln -s ~/dev-environment/.tmux.conf ~/.tmux.conf
 ln -s ~/dev-environment/yabai ~/.config/yabai
 ln -s ~/dev-environment/skhd ~/.config/skhd
+ln -s ~/dev-environment/.zsh_env_vars ~/.zsh_env_vars
 

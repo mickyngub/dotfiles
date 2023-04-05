@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
+
+local OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 require("lazy").setup({
 	-- lua functions that many plugins use
 	{
