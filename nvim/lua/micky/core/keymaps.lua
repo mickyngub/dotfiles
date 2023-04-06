@@ -45,6 +45,9 @@ keymap.set("n", "<leader>s=", "5<C-w>>")
 keymap.set("n", "<leader>s_", "5<C-w>-")
 keymap.set("n", "<leader>s+", "5<C-w>+")
 
+-- buffer management
+keymap.set("n", "<leader>st", ":ls<CR>")
+
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
