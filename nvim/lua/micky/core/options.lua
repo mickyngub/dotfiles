@@ -44,7 +44,11 @@ opt.undofile = true
 
 opt.updatetime = 50
 
+opt.scr = 10
+opt.so = 2
+
 -- disable continuation of comment
+
 api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		opt.formatoptions = opt.formatoptions - { "c", "r", "o" }
