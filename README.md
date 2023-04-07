@@ -1,4 +1,4 @@
-# Micky's Dev Environment Configuration✨
+# Micky's Dotfiles Configuration💻
 
 1. Install brew
 

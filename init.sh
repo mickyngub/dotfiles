@@ -1,10 +1,12 @@
 #!/usr/bin/zsh 
 
+# deletes the existing file/directory before running this file
+
 # Create symlink for config files
-ln -s ~/dev-environment/.zshrc ~/.zshrc
-ln -s ~/dev-environment/nvim ~/.config/nvim
-ln -s ~/dev-environment/.tmux.conf ~/.tmux.conf
-ln -s ~/dev-environment/yabai ~/.config/yabai
-ln -s ~/dev-environment/skhd ~/.config/skhd
-ln -s ~/dev-environment/.zsh_env_vars ~/.zsh_env_vars
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/nvim ~/.config/nvim
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/yabai ~/.config/yabai
+ln -s ~/dotfiles/skhd ~/.config/skhd
+ln -s ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
 
