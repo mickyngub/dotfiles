@@ -210,11 +210,8 @@ require("lazy").setup({
 		tag = "v2.0.3",
 		config = function()
 			require("hop").setup()
-			vim.keymap.set("n", "s", "<CMD>HopChar1<CR>", { noremap = true })
-			vim.keymap.set("x", "s", "<CMD>HopChar1<CR>", { noremap = true })
-
-			vim.keymap.set("n", "<leader>l", "<CMD>HopLine<CR>", { noremap = true })
-			vim.keymap.set("x", "<leader>l", "<CMD>HopLine<CR>", { noremap = true })
+			vim.keymap.set({ "n", "x" }, "<leader>s", ":HopChar1MW<CR>", { noremap = true })
+			vim.keymap.set({ "n", "x" }, "<leader>l", ":HopLineMW<CR>", { noremap = true })
 		end,
 	},
 	"ThePrimeagen/git-worktree.nvim",
