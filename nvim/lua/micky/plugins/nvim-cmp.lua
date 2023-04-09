@@ -18,7 +18,7 @@ end
 
 local tailwindcss_colorizer_cmp_status, tailwindcss_colorizer_cmp = pcall(require, "tailwindcss-colorizer-cmp")
 if not tailwindcss_colorizer_cmp_status then
-    return
+	return
 end
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -52,7 +52,6 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
-		{ name = "nvim_lsp_signature_help" },
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {

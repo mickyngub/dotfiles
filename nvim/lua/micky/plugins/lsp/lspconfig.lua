@@ -21,6 +21,11 @@ if not navbuddy_setup then
 	return
 end
 
+local lsp_signature_setup, lsp_signature = pcall(require, "lsp_signature")
+if not lsp_signature_setup then
+	return
+end
+
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds for available lsp server
@@ -28,6 +33,7 @@ local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
+	lsp_signature.on_attach(lsp_signature_setup, bufnr)
 	-- set keybinds
 	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration

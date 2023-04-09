@@ -67,7 +67,7 @@ require("lazy").setup({
 	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 	-- configuring lsp servers
 	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
-	"hrsh7th/cmp-nvim-lsp-signature-help", -- for hinting function signature
+	"ray-x/lsp_signature.nvim",
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
