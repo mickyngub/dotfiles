@@ -260,4 +260,14 @@ require("lazy").setup({
 		},
 	},
 	"vimwiki/vimwiki",
+	{
+		"NvChad/nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				tailwind = "lsp",
+				mode = "virtualtext",
+				css = true,
+			},
+		},
+	},
 })
