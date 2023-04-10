@@ -37,6 +37,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"`
 
    `brew install ripgrep`
 
+   `brew install gnu-sed`
+
 6. Run `zsh init.sh`
 
 7. git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
