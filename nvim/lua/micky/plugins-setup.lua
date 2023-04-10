@@ -210,7 +210,7 @@ require("lazy").setup({
 		tag = "v2.0.3",
 		config = function()
 			require("hop").setup()
-			vim.keymap.set({ "n", "x" }, "<leader>s", ":HopChar1MW<CR>", { noremap = true })
+			vim.keymap.set({ "n", "x" }, "s", ":HopChar1MW<CR>", { noremap = true })
 			vim.keymap.set({ "n", "x" }, "<leader>l", ":HopLineMW<CR>", { noremap = true })
 		end,
 	},
