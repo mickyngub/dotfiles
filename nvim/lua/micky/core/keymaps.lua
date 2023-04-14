@@ -1,5 +1,4 @@
 local keymap = vim.keymap -- for conciseness
-
 -- Don't use arrow keys
 keymap.set({ "n", "v", "i" }, "<up>", "<nop>")
 keymap.set({ "n", "v", "i" }, "<down>", "<nop>")
@@ -23,7 +22,6 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>")
 
-keymap.set({ "n", "v", "i" }, "Q", "<ESC>")
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 -- delete single character without copying into register
