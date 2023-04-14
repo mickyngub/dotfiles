@@ -61,6 +61,6 @@ cmd([[autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | c
 
 -- Notification after file change
 cmd([[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])
-cmd([[autocmd BufRead,BufNewFile *.env.example set filetype=sh]])
+cmd([[autocmd BufRead,BufNewFile *.env.* set filetype=sh]])
 
 cmd([[autocmd FileType fugitive nmap <buffer> <CR> gO]])
