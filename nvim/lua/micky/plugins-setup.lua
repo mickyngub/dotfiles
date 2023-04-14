@@ -49,16 +49,6 @@ require("lazy").setup({
 	-- autocompletion
 	{
 		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{
-				"roobert/tailwindcss-colorizer-cmp.nvim",
-				config = function()
-					require("tailwindcss-colorizer-cmp").setup({
-						color_square_width = 1.5,
-					})
-				end,
-			},
-		},
 	}, -- completion plugin
 	"hrsh7th/cmp-buffer", -- source for text in buffer
 	"hrsh7th/cmp-path", -- source for file system paths
