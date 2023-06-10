@@ -282,4 +282,5 @@ require("lazy").setup({
 			},
 		},
 	},
+	"gelguy/wilder.nvim",
 })
