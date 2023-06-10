@@ -20,7 +20,7 @@ null_ls.setup({
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
-		formatting.eslint_d,
+		-- formatting.eslint_d,
 		diagnostics.eslint_d, -- js/ts linter
 		code_actions.eslint_d,
 	},
