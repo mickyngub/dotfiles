@@ -283,4 +283,10 @@ require("lazy").setup({
 		},
 	},
 	"gelguy/wilder.nvim",
+	{
+		"junegunn/fzf.vim",
+		dependencies = {
+			"junegunn/fzf",
+		},
+	},
 })
