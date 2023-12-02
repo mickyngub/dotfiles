@@ -29,8 +29,7 @@ function chpwd() {
 }
 
 
-# Start yabai and skhd on open
-brew services start yabai
+# Start skhd on open
 brew services start skhd
 clear
 # * idk why but this result in a duplicate symlink directory which is ignored in .gitignore
