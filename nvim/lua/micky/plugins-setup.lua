@@ -218,14 +218,6 @@ require("lazy").setup({
 	},
 	"ThePrimeagen/git-worktree.nvim",
 	{
-		"SmiteshP/nvim-navbuddy",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"SmiteshP/nvim-navic",
-			"MunifTanjim/nui.nvim",
-		},
-	},
-	{
 		"james1236/backseat.nvim",
 		config = function()
 			if not OPENAI_API_KEY then
