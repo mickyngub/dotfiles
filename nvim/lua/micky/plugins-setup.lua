@@ -96,13 +96,13 @@ require("lazy").setup({
 	-- formatting & linting
 	"nvimtools/none-ls.nvim", -- configure formatters & linters
 	-- bridges gap b/w mason & null-ls
-  {
-    "jay-babu/mason-null-ls.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-  }
-  },
+	{
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+	},
 	-- treesitter configuration
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -116,7 +116,13 @@ require("lazy").setup({
 	"nvim-treesitter/playground",
 	-- git integration
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
-	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+			require("scrollbar.handlers.gitsigns").setup()
+		end,
+	}, -- show line modifications on left hand side
 	-- harpoon
 	"theprimeagen/harpoon",
 	-- undotree
@@ -294,5 +300,20 @@ require("lazy").setup({
 				require("oil").setup()
 			end,
 		},
+	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			-- require('hlslens').setup() is not required
+			require("scrollbar.handlers.search").setup({
+				-- hlslens config overrides
+			})
+		end,
+	},
+	{
+		"petertriho/nvim-scrollbar",
+		config = function()
+			require("scrollbar").setup({})
+		end,
 	},
 })
