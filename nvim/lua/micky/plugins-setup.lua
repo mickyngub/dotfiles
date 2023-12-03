@@ -326,4 +326,37 @@ require("lazy").setup({
 			require("scrollbar").setup({})
 		end,
 	},
+	{
+		"piersolenski/wtf.nvim",
+		config = function()
+			if not OPENAI_API_KEY then
+				print("Please provide an OpenAI API key for wtf plugin.")
+				return
+			end
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		opts = {
+			openai_api_key = OPENAI_API_KEY,
+		},
+		keys = {
+			{
+				"<leader>wtf",
+				mode = { "n", "x" },
+				function()
+					require("wtf").ai()
+				end,
+				desc = "Debug diagnostic with AI",
+			},
+			{
+				mode = { "n" },
+				"<leader>WTF",
+				function()
+					require("wtf").search()
+				end,
+				desc = "Search diagnostic with Google",
+			},
+		},
+	},
 })
