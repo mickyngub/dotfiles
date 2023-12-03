@@ -94,8 +94,15 @@ require("lazy").setup({
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 	-- formatting & linting
-	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-	"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
+	"nvimtools/none-ls.nvim", -- configure formatters & linters
+	-- bridges gap b/w mason & null-ls
+  {
+    "jay-babu/mason-null-ls.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+  }
+  },
 	-- treesitter configuration
 	{
 		"nvim-treesitter/nvim-treesitter",
