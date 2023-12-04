@@ -338,4 +338,20 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			-- duplicated in options.lua
+			vim.opt.termguicolors = true
+			require("notify").setup({
+				background_colour = "#000000",
+			})
+		end,
+	},
+	{
+		"dmmulroy/tsc.nvim",
+		config = function()
+			require("tsc").setup()
+		end,
+	},
 })

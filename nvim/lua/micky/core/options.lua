@@ -2,6 +2,13 @@ local opt = vim.opt -- for conciseness
 local api = vim.api -- for conciseness
 local cmd = vim.cmd -- for conciseness
 
+local notify_status, notify = pcall(require, "notify")
+if not notify_status then
+	return
+end
+vim.notify = function(message, level, opts)
+	return notify(message, level, opts) -- <-- Important to return the value from `nvim-notify`
+end
 -- line numbers
 opt.relativenumber = true
 opt.number = true
