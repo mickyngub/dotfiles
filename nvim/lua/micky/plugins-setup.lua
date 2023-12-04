@@ -331,7 +331,11 @@ require("lazy").setup({
 		"nvim-focus/focus.nvim",
 		version = "*",
 		config = function()
-			require("focus").setup({})
+			require("focus").setup({
+				ui = {
+					signcolumn = false, -- Display signcolumn in the focussed window only
+				},
+			})
 		end,
 	},
 })
