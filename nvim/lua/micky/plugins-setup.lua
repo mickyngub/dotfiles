@@ -221,12 +221,7 @@ require("lazy").setup({
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("chatgpt").setup({
-				keymaps = {
-					submit = "<C-s>",
-					close = "<leader><leader>",
-				},
-			})
+			require("chatgpt").setup({})
 		end,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -331,5 +326,12 @@ require("lazy").setup({
 				desc = "Search diagnostic with Google",
 			},
 		},
+	},
+	{
+		"nvim-focus/focus.nvim",
+		version = "*",
+		config = function()
+			require("focus").setup({})
+		end,
 	},
 })
