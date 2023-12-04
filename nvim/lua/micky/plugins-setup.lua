@@ -63,7 +63,7 @@ require("lazy").setup({
 	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
 	"ray-x/lsp_signature.nvim",
 	{
-		"glepnir/lspsaga.nvim",
+		"nvimdev/lspsaga.nvim",
 		branch = "main",
 		event = "LspAttach",
 		config = function()
