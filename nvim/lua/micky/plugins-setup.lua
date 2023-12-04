@@ -65,6 +65,7 @@ require("lazy").setup({
 	{
 		"nvimdev/lspsaga.nvim",
 		branch = "main",
+		commit = "76696bed4397c3b58563c246dc1f7856ed4af023",
 		event = "LspAttach",
 		config = function()
 			require("lspsaga").setup({
