@@ -194,19 +194,24 @@ require("lazy").setup({
 	},
 	{
 		"j-hui/fidget.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("fidget").setup({
 				progress = {
+					ignore_done_already = true,
+					ignore_empty_message = false,
 					ignore = {
 						"null-ls",
 					},
 					display = {
-						render_limit = 6,
+						render_limit = 4,
 					},
+				},
+				notification = {
+					override_vim_notify = true,
 				},
 			})
 		end,
+		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{
 		"phaazon/hop.nvim",
