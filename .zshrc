@@ -128,7 +128,7 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-alias killgf="npx kill-port 3000 3001 3002"
+alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
 alias cdgfb="cd ~/Documents/Dev/guildfi/guildfi-app-bare"
 alias cdnvim="cd ~/.config/nvim"
