@@ -121,21 +121,15 @@ source $ZSH/oh-my-zsh.sh
 alias arm="env /usr/bin/arch --arm64 /bin/zsh --login"
 alias intel="env /usr/bin/arch --x86_64 /bin/zsh --login"
 
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
-alias cdgfb="cd ~/Documents/Dev/guildfi/guildfi-app-bare"
 alias cdnvim="cd ~/.config/nvim"
 alias cddot="cd ~/dotfiles"
 alias cddev="cd ~/Documents/Dev"
 alias ls="ls -a"
-alias cdwiki="cd ~/vimwiki"
 alias v="nvim"
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 alias ydz="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-zentry"
