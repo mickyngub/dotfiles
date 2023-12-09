@@ -124,6 +124,14 @@ alias intel="env /usr/bin/arch --x86_64 /bin/zsh --login"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+function git_pull_rebase() {
+  git pull origin $1 --rebase
+}
+
+function git_pull_no_rebase() {
+  git pull origin $1 --no-rebase
+}
+
 alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
 alias cdnvim="cd ~/.config/nvim"
@@ -135,4 +143,6 @@ alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 alias ydz="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-zentry"
 alias ydg="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-guildfi"
 alias ydd="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-docs"
+alias gpr='git_pull_rebase'
+alias gpnr='git_pull_no_rebase'
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
