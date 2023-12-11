@@ -365,4 +365,12 @@ require("lazy").setup({
 			require("symbols-outline").setup()
 		end,
 	},
+	{
+		"rbong/vim-flog",
+		lazy = true,
+		cmd = { "Flog", "Flogsplit", "Floggit" },
+		dependencies = {
+			"tpope/vim-fugitive",
+		},
+	},
 })
