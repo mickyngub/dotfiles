@@ -46,7 +46,8 @@ keymap.set("n", "<leader>s_", "5<C-w>-")
 keymap.set("n", "<leader>s+", "5<C-w>+")
 
 -- buffer management
-keymap.set("n", "<leader>st", ":ls<CR>")
+keymap.set("n", "[b", ":bprevious<CR>")
+keymap.set("n", "]b", ":bnext<CR>")
 
 keymap.set("n", "<leader>oo", ":options<CR>")
 
