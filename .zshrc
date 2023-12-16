@@ -133,6 +133,7 @@ function git_pull_no_rebase() {
 }
 
 alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
+alias killv="pkill -9 nvim && pkill -9 eslint_d"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
 alias cdnvim="cd ~/.config/nvim"
 alias cddot="cd ~/dotfiles"
