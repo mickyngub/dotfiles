@@ -132,6 +132,11 @@ function git_pull_no_rebase() {
   git pull origin $1 --no-rebase
 }
 
+function compress_mov() {
+  ffmpeg -i ~/desktop/$1.mov -qscale 0 ~/desktop/$1.mp4
+  rm ~/Desktop/$1.mov
+}
+
 alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
 alias killv="pkill -9 nvim && pkill -9 eslint_d"
 alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
@@ -146,4 +151,5 @@ alias ydg="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-guildfi"
 alias ydd="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-docs"
 alias gpr='git_pull_rebase'
 alias gpnr='git_pull_no_rebase'
+alias cpv='compress_mov'
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
