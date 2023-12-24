@@ -18,6 +18,9 @@ vim.g.vimwiki_map_prefix = "<leader>v"
 
 local OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+vim.cmd([[highlight ConflictAdd guibg=#103235]])
+vim.cmd([[highlight ConflictText guibg=#394b70]])
+
 require("lazy").setup({
 	-- lua functions that many plugins use
 	{
@@ -372,5 +375,17 @@ require("lazy").setup({
 		dependencies = {
 			"tpope/vim-fugitive",
 		},
+	},
+	{
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = function()
+			require("git-conflict").setup({
+				highlights = { -- They must have background color, otherwise the default color will be used
+					incoming = "ConflictAdd",
+					current = "ConflictText",
+				},
+			})
+		end,
 	},
 })
