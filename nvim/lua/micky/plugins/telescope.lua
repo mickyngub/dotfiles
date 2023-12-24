@@ -32,6 +32,7 @@ keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+keymap.set("n", "<leader>fm", "<cmd>Telescope media_files<cr>") -- find media files
 
 -- configure telescope
 telescope.setup({
@@ -49,7 +50,15 @@ telescope.setup({
 			},
 		},
 	},
+	extensions = {
+		media_files = {
+			-- filetypes whitelist
+			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+			filetypes = { "png", "webp", "webm", "jpg", "jpeg", "pdf", "svg" },
+		},
+	},
 })
 
 telescope.load_extension("fzf")
 telescope.load_extension("git_worktree")
+telescope.load_extension("media_files")
