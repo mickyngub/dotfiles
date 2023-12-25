@@ -230,11 +230,9 @@ require("lazy").setup({
 		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{
-		"phaazon/hop.nvim",
-		tag = "v2.0.3",
+		"ggandor/leap.nvim",
 		config = function()
-			require("hop").setup()
-			vim.keymap.set({ "n", "x" }, "s", ":HopChar1MW<CR>", { noremap = true })
+			require("leap").add_default_mappings()
 		end,
 	},
 	{
