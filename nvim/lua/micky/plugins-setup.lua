@@ -237,7 +237,6 @@ require("lazy").setup({
 			vim.keymap.set({ "n", "x" }, "s", ":HopChar1MW<CR>", { noremap = true })
 		end,
 	},
-	"ThePrimeagen/git-worktree.nvim",
 	{
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
@@ -250,7 +249,6 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim",
 		},
 	},
-	"vimwiki/vimwiki",
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = {
