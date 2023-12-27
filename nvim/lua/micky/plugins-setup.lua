@@ -256,6 +256,9 @@ require("lazy").setup({
 				css = true,
 			},
 		},
+		config = function()
+			require("colorizer").setup()
+		end,
 	},
 	{
 		"chentoast/marks.nvim",
@@ -404,5 +407,24 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
+	},
+	{
+		"RRethy/nvim-treesitter-textsubjects",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				textsubjects = {
+					enable = true,
+					prev_selection = ",", -- (Optional) keymap to select the previous selection
+					keymaps = {
+						["."] = "textsubjects-smart",
+						[";"] = "textsubjects-container-outer",
+						["i;"] = {
+							"textsubjects-container-inner",
+							desc = "Select inside containers (classes, functions, etc.)",
+						},
+					},
+				},
+			})
+		end,
 	},
 })
