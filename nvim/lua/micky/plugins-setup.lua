@@ -136,7 +136,16 @@ require("lazy").setup({
 		end,
 	}, -- show line modifications on left hand side
 	-- harpoon
-	"theprimeagen/harpoon",
+	{
+		"theprimeagen/harpoon",
+		config = function()
+			require("harpoon").setup({
+				menu = {
+					width = vim.api.nvim_win_get_width(0) - 40,
+				},
+			})
+		end,
+	},
 	-- undotree
 	"mbbill/undotree",
 	-- fugitive
