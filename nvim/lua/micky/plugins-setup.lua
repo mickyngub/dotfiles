@@ -361,6 +361,9 @@ require("lazy").setup({
 		version = "*",
 		config = function()
 			require("focus").setup({
+				autoresize = {
+					minwidth = 28, -- Force minimum width for the unfocused window
+				},
 				ui = {
 					signcolumn = false, -- Display signcolumn in the focussed window only
 				},
