@@ -358,9 +358,12 @@ require("lazy").setup({
 	},
 	{
 		"nvim-focus/focus.nvim",
-		version = "*",
+		branch = "master",
 		config = function()
 			require("focus").setup({
+				autoresize = {
+					minwidth = 28,
+				},
 				ui = {
 					signcolumn = false, -- Display signcolumn in the focussed window only
 				},
