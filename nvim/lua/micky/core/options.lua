@@ -71,3 +71,5 @@ cmd([[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on d
 cmd([[autocmd BufRead,BufNewFile *.env.* set filetype=sh]])
 
 cmd([[autocmd FileType fugitive nmap <buffer> <CR> gO]])
+
+cmd([[autocmd VimLeave * !eslint_d stop]])
