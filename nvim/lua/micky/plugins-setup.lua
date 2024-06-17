@@ -106,13 +106,29 @@ require("lazy").setup({
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 	-- formatting & linting
-	"nvimtools/none-ls.nvim", -- configure formatters & linters
-	-- bridges gap b/w mason & null-ls
 	{
 		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("mason-null-ls").setup({
+				-- Each of one of these needs to be added in the configuration for none-ls.nvim
+				ensure_installed = {
+					-- Formatters
+					"prettier",
+					"stylua",
+					-- Deprecated LSPs in none-ls plugin
+					"eslint_d",
+				},
+			})
+		end,
+		lazy = true,
+	},
+	{
+		"nvimtools/none-ls.nvim", -- configure formatters & linters
 		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
+			"nvimtools/none-ls-extras.nvim",
+			"nvim-lua/plenary.nvim",
+			"jay-babu/mason-null-ls.nvim",
 		},
 	},
 	-- treesitter configuration
