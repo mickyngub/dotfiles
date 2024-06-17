@@ -76,7 +76,6 @@ require("lazy").setup({
 	{
 		"nvimdev/lspsaga.nvim",
 		branch = "main",
-		commit = "76696bed4397c3b58563c246dc1f7856ed4af023",
 		event = "LspAttach",
 		config = function()
 			require("lspsaga").setup({
@@ -84,11 +83,13 @@ require("lazy").setup({
 				scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
 				-- use enter to open file with definition preview
 				definition = {
-					edit = "<CR>",
+					keys = {
+						tabe = "<CR>",
+					},
 				},
 				finder = {
 					keys = {
-						expand_or_jump = "<CR>",
+						toggle_or_open = "<CR>",
 					},
 				},
 				symbol_in_winbar = {
