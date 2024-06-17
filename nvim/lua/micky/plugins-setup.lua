@@ -84,7 +84,7 @@ require("lazy").setup({
 				-- use enter to open file with definition preview
 				definition = {
 					keys = {
-						tabe = "<CR>",
+						vsplit = "<CR>",
 					},
 				},
 				finder = {
