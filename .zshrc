@@ -99,6 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -152,4 +156,3 @@ alias ydd="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-docs"
 alias gpr='git_pull_rebase'
 alias gpnr='git_pull_no_rebase'
 alias cpv='compress_mov'
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
