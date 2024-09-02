@@ -125,6 +125,11 @@ export NVM_DIR="$HOME/.nvm"
 alias arm="env /usr/bin/arch --arm64 /bin/zsh --login"
 alias intel="env /usr/bin/arch --x86_64 /bin/zsh --login"
 
+
+eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
