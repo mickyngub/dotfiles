@@ -302,6 +302,16 @@ require("lazy").setup({
 					desc = "send all item to quickfix",
 				},
 			},
+			replace_engine = {
+				["sed"] = {
+					cmd = "sed",
+					args = {
+						"-i",
+						"",
+						"-E",
+					},
+				},
+			},
 		},
 	},
 	"gelguy/wilder.nvim",
