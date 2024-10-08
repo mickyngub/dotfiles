@@ -48,12 +48,12 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>lsp", "<cmd>LspInfo<CR>", opts)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
 		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
 		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
 		keymap.set("n", "<leader>tsc", ":TSC<CR>") -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "GD", ":TypescriptGoToSourceDefinition<CR>") -- remove unused variables (not in youtube nvim video)
+		keymap.set("n", "<leader>gd", ":TypescriptGoToSourceDefinition<CR>") -- remove unused variables (not in youtube nvim video)
 	end
 end
 
