@@ -21,16 +21,8 @@ null_ls.setup({
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
 		formatting.prettier, -- js/ts formatter
 		formatting.yapf,
-		diagnostics.with({
-			condition = function(utils)
-				return utils.root_has_file({
-					".eslintrc",
-					".eslintrc.js",
-					".eslintrc.json",
-				})
-			end,
-		}),
-		code_actions,
+		diagnostics,
+    code_actions,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
