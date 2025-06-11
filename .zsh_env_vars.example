@@ -1,1 +1,2 @@
 export OPENAI_API_KEY="sk-xxxxxx"
+export ANTHROPIC_API_KEY="sk-xxxxxx"

@@ -84,7 +84,7 @@ require("lazy").setup({
 				-- use enter to open file with definition preview
 				definition = {
 					keys = {
-						vsplit = "<CR>",
+						edit = "<CR>",
 					},
 				},
 				finder = {
@@ -472,6 +472,12 @@ require("lazy").setup({
 		lazy = false,
 		opts = {
 			-- add any opts here
+			claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-3-5-sonnet-20241022",
+				temperature = 0,
+				max_tokens = 4096,
+			},
 		},
 		build = ":AvanteBuild", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
 		dependencies = {
@@ -481,6 +487,9 @@ require("lazy").setup({
 			--- The below dependencies are optional,
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			{
 				-- support for image pasting
 				"HakonHarnes/img-clip.nvim",
