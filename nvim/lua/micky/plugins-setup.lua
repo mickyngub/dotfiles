@@ -474,7 +474,8 @@ require("lazy").setup({
 			-- add any opts here
 			claude = {
 				endpoint = "https://api.anthropic.com",
-				model = "claude-3-5-sonnet-20241022",
+				model = "claude-sonnet-4-20250514",
+				timeout = 30000, -- Timeout in milliseconds
 				temperature = 0,
 				max_tokens = 4096,
 			},
@@ -516,5 +517,18 @@ require("lazy").setup({
 				ft = { "markdown", "Avante" },
 			},
 		},
+	},
+	{
+		"greggh/claude-code.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- Required for git operations
+		},
+		config = function()
+			require("claude-code").setup({
+				window = {
+					position = "vertical",
+				},
+			})
+		end,
 	},
 })
