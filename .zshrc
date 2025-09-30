@@ -161,3 +161,5 @@ alias ydd="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-docs"
 alias gpr='git_pull_rebase'
 alias gpnr='git_pull_no_rebase'
 alias cpv='compress_mov'
+alias claude='/Users/micky/.claude/local/claude'
+alias claude-yolo='claude --dangerously-skip-permissions'
