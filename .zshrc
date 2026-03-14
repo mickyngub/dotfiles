@@ -134,11 +134,71 @@ eval "$(zoxide init --cmd cd zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 function git_pull_rebase() {
-  git pull origin $1 --rebase
+  command git pull origin $1 --rebase
 }
 
 function git_pull_no_rebase() {
-  git pull origin $1 --no-rebase
+  command git pull origin $1 --no-rebase
+}
+
+# Wrap git to auto-symlink .env files after `git worktree add`
+function git() {
+  command git "$@"
+  local exit_code=$?
+
+  if [[ $exit_code -eq 0 && "$1" == "worktree" && "$2" == "add" ]]; then
+    local args=("${@:3}")
+    local worktree_path=""
+    local skip_next=false
+
+    # Parse the <path> arg (skip flags that take values)
+    for arg in "${args[@]}"; do
+      if $skip_next; then
+        skip_next=false
+        continue
+      fi
+      case "$arg" in
+        -b|-B|--reason) skip_next=true ;;
+        --*|-*) ;;
+        *)
+          if [[ -z "$worktree_path" ]]; then
+            worktree_path="$arg"
+          fi
+          ;;
+      esac
+    done
+
+    if [[ -n "$worktree_path" && -d "$worktree_path" ]]; then
+      local main_wt
+      main_wt=$(command git worktree list --porcelain | head -1 | sed 's/^worktree //')
+      worktree_path=${worktree_path:a}
+
+      if [[ "$main_wt" != "$worktree_path" && -d "$main_wt" ]]; then
+        local count=0
+        while IFS= read -r -d '' env_file; do
+          local rel="${env_file#$main_wt/}"
+          # Only link if not already present (avoids overwriting tracked files)
+          if [[ ! -e "$worktree_path/$rel" ]]; then
+            mkdir -p "$worktree_path/$(dirname "$rel")"
+            ln -sf "$env_file" "$worktree_path/$rel"
+            ((count++))
+          fi
+        done < <(find "$main_wt" -name '.env*' \
+          -not -path '*/node_modules/*' \
+          -not -path '*/.next/*' \
+          -not -path '*/.git/*' \
+          -not -path '*/.turbo/*' \
+          -not -path '*/dist/*' \
+          -print0 2>/dev/null)
+
+        if [[ $count -gt 0 ]]; then
+          printf '\n\xF0\x9F\x94\x97 Linked %d .env file(s) from main worktree\n' "$count"
+        fi
+      fi
+    fi
+  fi
+
+  return $exit_code
 }
 
 function compress_mov() {
@@ -146,20 +206,52 @@ function compress_mov() {
   rm ~/Desktop/$1.mov
 }
 
-alias killz="npx kill-port 3000 3001 3002 3003 3004 6007 6008"
+# Function to create new tmux sessions if they don't exist and attach to session1 or the first available session
+function create_tmux_sessions_and_attach() {
+    # Check if tmux server is running
+    if ! tmux ls >/dev/null 2>&1; then
+        # Start new tmux sessions in detached mode
+        tmux new-session -d -s nexus
+        tmux new-session -d -s nexus-claude
+        tmux new-session -d -s nexus-terminal
+        tmux new-session -d -s dotfiles
+    fi
+
+    # Check if nexus exists and attach to it; otherwise, attach to the first available session
+    if tmux has-session -t nexus 2>/dev/null; then
+        tmux attach-session -t nexus
+    else
+        tmux attach-session -t $(tmux ls | head -n 1 | cut -d: -f1)
+    fi
+}
+
+# Call the function
+create_tmux_sessions_and_attach
+
+
 alias killv="pkill -9 nvim && pkill -9 eslint_d"
-alias cdgf="cd ~/Documents/Dev/guildfi/guildfi-app"
 alias cdnvim="cd ~/.config/nvim"
 alias cddot="cd ~/dotfiles"
 alias cddev="cd ~/Documents/Dev"
 alias ls="ls -a"
 alias v="nvim"
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
-alias ydz="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-zentry"
-alias ydg="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-guildfi"
-alias ydd="cd ~/Documents/Dev/guildfi/guildfi-app && yarn dev-docs"
 alias gpr='git_pull_rebase'
 alias gpnr='git_pull_no_rebase'
 alias cpv='compress_mov'
-alias claude='/Users/micky/.claude/local/claude'
+
 alias claude-yolo='claude --dangerously-skip-permissions'
+
+
+export PATH="/opt/homebrew/opt/mozjpeg/bin:$PATH"
+
+
+# bun completions
+[ -s "/Users/micky/.bun/_bun" ] && source "/Users/micky/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+

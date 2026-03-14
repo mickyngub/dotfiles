@@ -66,3 +66,30 @@ keymap.set({ "n", "v" }, "<leader><leader>", function()
 		end
 	end
 end)
+
+-- Convert selected text to kebab-case
+keymap.set("v", "<leader>kb", function()
+	-- Get the visual selection
+	local start_pos = vim.fn.getpos("'<")
+	local end_pos = vim.fn.getpos("'>")
+	local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
+
+	-- Handle single line selection
+	if #lines == 1 then
+		local line = lines[1]
+		local start_col = start_pos[3] - 1
+		local end_col = end_pos[3]
+		local text = line:sub(start_col + 1, end_col)
+
+		-- Convert to kebab-case
+		local kebab = text
+			:gsub("([a-z])([A-Z])", "%1-%2") -- camelCase to camel-Case
+			:gsub("([A-Z]+)([A-Z][a-z])", "%1-%2") -- HTMLParser to HTML-Parser
+			:gsub("^([A-Z])", string.lower) -- First letter to lowercase
+			:gsub("([A-Z])", string.lower) -- All uppercase to lowercase
+
+		-- Replace the text
+		local new_line = line:sub(1, start_col) .. kebab .. line:sub(end_col + 1)
+		vim.api.nvim_buf_set_lines(0, start_pos[2] - 1, start_pos[2], false, { new_line })
+	end
+end, { desc = "Convert to kebab-case" })
