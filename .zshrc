@@ -1,27 +1,9 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt (if installed)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 source $HOME/.zsh_env_vars
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 function chpwd() {
     emulate -L zsh
@@ -29,9 +11,11 @@ function chpwd() {
 }
 
 
-# Start skhd on open
-brew services start skhd
-clear
+# Start skhd on open (macOS only)
+if [[ "$(uname)" == "Darwin" ]]; then
+  brew services start skhd
+  clear
+fi
 # * idk why but this result in a duplicate symlink directory which is ignored in .gitignore
 
 # Uncomment the following line to use case-sensitive completion.
@@ -83,14 +67,20 @@ clear
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
-
-source $ZSH/oh-my-zsh.sh
+# oh-my-zsh (if installed)
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+  plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
+  source $ZSH/oh-my-zsh.sh
+else
+  # Standalone plugin loading (without oh-my-zsh)
+  for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+    for dir in /usr/share/zsh-$plugin /usr/share/zsh/plugins/$plugin $HOME/.zsh/plugins/$plugin; do
+      [[ -f "$dir/$plugin.zsh" ]] && source "$dir/$plugin.zsh" && break
+    done
+  done
+fi
 
 # User configuration
 
@@ -100,8 +90,13 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 export NVM_DIR="$HOME/.nvm"
+if [[ "$(uname)" == "Darwin" ]]; then
     [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
     [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+else
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+fi
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -122,8 +117,10 @@ export NVM_DIR="$HOME/.nvm"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias arm="env /usr/bin/arch --arm64 /bin/zsh --login"
-alias intel="env /usr/bin/arch --x86_64 /bin/zsh --login"
+if [[ "$(uname)" == "Darwin" ]]; then
+  alias arm="env /usr/bin/arch --arm64 /bin/zsh --login"
+  alias intel="env /usr/bin/arch --x86_64 /bin/zsh --login"
+fi
 
 
 eval "$(zoxide init zsh)"
@@ -131,7 +128,7 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 function git_pull_rebase() {
   command git pull origin $1 --rebase
@@ -243,11 +240,12 @@ alias cpv='compress_mov'
 alias claude-yolo='claude --dangerously-skip-permissions'
 
 
-export PATH="/opt/homebrew/opt/mozjpeg/bin:$PATH"
-
+if [[ "$(uname)" == "Darwin" ]]; then
+  export PATH="/opt/homebrew/opt/mozjpeg/bin:$PATH"
+fi
 
 # bun completions
-[ -s "/Users/micky/.bun/_bun" ] && source "/Users/micky/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
