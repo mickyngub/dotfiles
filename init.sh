@@ -1,6 +1,9 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
 
 # deletes the existing file/directory before running this file
+
+# Ensure ~/.config exists
+mkdir -p ~/.config
 
 # Create symlink for config files (cross-platform)
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
@@ -8,7 +11,7 @@ ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
 
-# macOS-only symlinks
+# macOS-only setup
 if [[ "$(uname)" == "Darwin" ]]; then
   ln -sf ~/dotfiles/yabai ~/.config/yabai
   ln -sf ~/dotfiles/skhd ~/.config/skhd
