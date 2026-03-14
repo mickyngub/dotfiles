@@ -21,11 +21,11 @@ fi
 if [[ "$(uname)" == "Linux" ]]; then
   echo "Installing dependencies for Linux..."
   if command -v apt &>/dev/null; then
-    sudo apt update && sudo apt install -y git neovim tmux ripgrep fd-find fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting
+    sudo apt update && sudo apt install -y git neovim tmux ripgrep fd-find fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting build-essential nodejs npm
   elif command -v dnf &>/dev/null; then
-    sudo dnf install -y git neovim tmux ripgrep fd-find fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting
+    sudo dnf install -y git neovim tmux ripgrep fd-find fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting gcc gcc-c++ make nodejs npm
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --noconfirm git neovim tmux ripgrep fd fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting
+    sudo pacman -Sy --noconfirm git neovim tmux ripgrep fd fzf zsh zoxide zsh-autosuggestions zsh-syntax-highlighting base-devel nodejs npm
   else
     echo "Unsupported package manager. Install git, neovim, tmux, ripgrep, fd, fzf, zsh, zoxide, zsh-autosuggestions, and zsh-syntax-highlighting manually."
   fi
