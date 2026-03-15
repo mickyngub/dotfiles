@@ -1,59 +1,51 @@
-# Micky's Dotfiles Configuration💻
+# Micky's Dotfiles
 
-1. Install brew
+Personal dotfiles for macOS and Linux, featuring Neovim, tmux, zsh (with oh-my-zsh + Powerlevel10k), yabai, and skhd.
 
-   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+## What's Included
 
-   `echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[username]/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"`
+- **zsh** — Shell config with oh-my-zsh, Powerlevel10k theme, zsh-autosuggestions, zsh-syntax-highlighting
+- **Neovim** — Custom config with lazy.nvim
+- **tmux** — Prefix remapped to `Ctrl+a`, vim-style copy mode, TPM plugins
+- **yabai** — Tiling window manager (macOS only)
+- **skhd** — Hotkey daemon (macOS only)
+- **iTerm2 color presets** — blue-matrix, kanagawa, kanagawa_dragon, tokyo-night
 
-2. Install iTerm2, oh-my-zsh, powerlevel10k, git
+## Setup
 
-   `brew install --cask iterm2`
+```sh
+git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+zsh init.sh
+```
 
-   `brew install git`
+That's it. The init script handles everything:
 
-   `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+- Installs Homebrew (if needed) and all packages via brew on both macOS and Linux
+- macOS extras: iTerm2, yabai, skhd
+- Linux extras: build tools via system package manager (for Homebrew compatibility)
+- Installs oh-my-zsh, Powerlevel10k, zsh plugins, TPM, nvm + Node.js LTS, and creates all symlinks
 
-   `git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k`
+After setup, open a new terminal and:
+- Press `Ctrl+a` then `Shift+I` inside tmux to install tmux plugins
+- Run `p10k configure` to set up your prompt
+- (macOS) Import an iTerm2 color preset from this repo (e.g. `kanagawa.itermcolors`)
 
-3. Configure iTerm2 with blue-matrix.itermcolors color preset
+## Environment Variables
 
-4. Install zsh plugins
+Copy the example file and fill in your keys:
 
-   `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
+```sh
+cp .zsh_env_vars.example .zsh_env_vars
+```
 
-   `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
-
-5. Install nvim, tmux, yabai, skhd, and ripgrep
-
-   `brew install nvim`
-
-   `brew install tmux`
-
-   `brew install koekeishiya/formulae/yabai`
-
-   `brew install koekeishiya/formulae/skhd`
-
-   `brew install ripgrep`
-
-   `brew install gnu-sed`
-   
-   `brew install fd`
-
-   `brew install fzf`
-   
-6. Run `zsh init.sh`
-
-7. git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-8. Open tmux and `Crtl + a + Shift + i` to install tmux plugins
+This file is gitignored.
 
 ## Notes
 
-    - remap caps lock to control
-    - set `Close` shortcut for iTerm2 to `Command + Shift + w`
-    - set iTerm2 to be able to use option key to jump back and forth
+- Remap Caps Lock to Control for a better tmux/vim experience
+- On iTerm2, set the Close shortcut to `Cmd+Shift+W`
+- On iTerm2, configure the Option key to send Esc+ for word-jumping shortcuts
 
 ## References
 
