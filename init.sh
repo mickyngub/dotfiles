@@ -87,6 +87,12 @@ if [[ "$(uname)" == "Darwin" ]]; then
   ln -sf ~/dotfiles/skhd ~/.config/skhd
 fi
 
+# ─── Set default shell to zsh ───
+if [[ "$SHELL" != *"zsh"* ]]; then
+  echo "==> Changing default shell to zsh..."
+  chsh -s "$(which zsh)"
+fi
+
 # ─── Environment variables template ───
 if [[ ! -f ~/dotfiles/.zsh_env_vars ]]; then
   echo "==> Creating .zsh_env_vars from example..."

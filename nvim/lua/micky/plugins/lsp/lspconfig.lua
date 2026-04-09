@@ -123,6 +123,12 @@ lspconfig["lua_ls"].setup({
 	},
 })
 
+-- configure biome (auto-activates in projects with biome.json/biome.jsonc)
+lspconfig["biome"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
