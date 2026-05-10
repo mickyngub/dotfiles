@@ -9,12 +9,6 @@ function chpwd() {
     emulate -L zsh
     ls -a
 }
-
-# Start skhd if not already running (macOS only)
-if [[ "$(uname)" == "Darwin" ]]; then
-  pgrep -q skhd || brew services start skhd
-fi
-
 # oh-my-zsh (if installed)
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
