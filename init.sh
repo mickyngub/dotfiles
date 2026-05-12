@@ -73,6 +73,12 @@ if [[ ! -d "$NVM_DIR" ]]; then
   nvm install --lts
 fi
 
+# ─── Environment variables template ───
+if [[ ! -f ~/dotfiles/.zsh_env_vars ]]; then
+  echo "==> Creating .zsh_env_vars from example..."
+  cp ~/dotfiles/.zsh_env_vars.example ~/dotfiles/.zsh_env_vars
+fi
+
 # ─── Symlinks ───
 echo "==> Creating symlinks..."
 mkdir -p ~/.config
@@ -91,12 +97,6 @@ fi
 if [[ "$SHELL" != *"zsh"* ]]; then
   echo "==> Changing default shell to zsh..."
   chsh -s "$(which zsh)"
-fi
-
-# ─── Environment variables template ───
-if [[ ! -f ~/dotfiles/.zsh_env_vars ]]; then
-  echo "==> Creating .zsh_env_vars from example..."
-  cp ~/dotfiles/.zsh_env_vars.example ~/dotfiles/.zsh_env_vars
 fi
 
 echo ""

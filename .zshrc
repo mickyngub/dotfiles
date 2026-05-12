@@ -3,7 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $HOME/.zsh_env_vars
+[[ -f $HOME/.zsh_env_vars ]] && source $HOME/.zsh_env_vars
 
 function chpwd() {
     emulate -L zsh

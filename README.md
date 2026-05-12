@@ -16,7 +16,7 @@ Personal dotfiles for macOS and Linux, featuring Neovim, tmux, zsh (with oh-my-z
 ```sh
 git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-zsh init.sh
+./init.sh
 ```
 
 That's it. The init script handles everything:
@@ -29,7 +29,7 @@ That's it. The init script handles everything:
 After setup, open a new terminal and:
 - Press `Ctrl+a` then `Shift+I` inside tmux to install tmux plugins
 - Run `p10k configure` to set up your prompt
-- (macOS) Import an iTerm2 color preset from this repo (e.g. `kanagawa.itermcolors`)
+- (macOS) Import an iTerm2 color preset: **iTerm2 → Settings → Profiles → Colors → Color Presets → Import**, pick a `.itermcolors` file from this repo, then select it from the same dropdown.
 
 ## Environment Variables
 
