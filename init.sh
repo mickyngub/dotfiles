@@ -84,7 +84,7 @@ mkdir -p ~/.config
 
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.config/tmux ~/.config/tmux
 ln -sf ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
 ln -sf ~/dotfiles/.config/herdr ~/.config/herdr
 
