@@ -89,8 +89,8 @@ ln -sf ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
 ln -sf ~/dotfiles/.config/herdr ~/.config/herdr
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  ln -sf ~/dotfiles/yabai ~/.config/yabai
-  ln -sf ~/dotfiles/skhd ~/.config/skhd
+  ln -sf ~/dotfiles/.config/yabai ~/.config/yabai
+  ln -sf ~/dotfiles/.config/skhd ~/.config/skhd
 fi
 
 # ─── Set default shell to zsh ───
