@@ -28,7 +28,7 @@ local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	lsp_signature.on_attach(lsp_signature_setup, bufnr)
+	lsp_signature.on_attach({}, bufnr)
 	-- set keybinds
 	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
@@ -43,7 +43,6 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 	keymap.set("n", "<leader>R", "<cmd>LspRestart<CR>", opts)
 	keymap.set("n", "<leader>lsp", "<cmd>LspInfo<CR>", opts)
 
@@ -132,5 +131,4 @@ lspconfig["biome"].setup({
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	filetypes = { "py" },
 })

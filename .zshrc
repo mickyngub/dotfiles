@@ -26,7 +26,7 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 if [[ "$(uname)" == "Darwin" ]]; then
-    local brew_prefix="${HOMEBREW_PREFIX:-/opt/homebrew}"
+    brew_prefix="${HOMEBREW_PREFIX:-/opt/homebrew}"
     [ -s "$brew_prefix/opt/nvm/nvm.sh" ] && \. "$brew_prefix/opt/nvm/nvm.sh" # This loads nvm
     [ -s "$brew_prefix/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$brew_prefix/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 else

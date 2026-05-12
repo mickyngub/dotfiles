@@ -148,10 +148,9 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("gitsigns").setup()
 			require("scrollbar.handlers.gitsigns").setup()
 		end,
-	}, -- show line modifications on left hand side
+	}, -- show line modifications on left hand side (real setup lives in plugins/gitsigns.lua)
 	-- harpoon
 	{
 		"theprimeagen/harpoon",

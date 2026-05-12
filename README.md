@@ -10,6 +10,8 @@ Personal dotfiles for macOS and Linux, featuring Neovim, tmux, zsh (with oh-my-z
 - **yabai** — Tiling window manager (macOS only)
 - **skhd** — Hotkey daemon (macOS only)
 - **iTerm2 color presets** — blue-matrix, kanagawa, kanagawa_dragon, tokyo-night
+- **tmux session auto-color** — each session's status bar gets a unique color derived from its name (`tmux-session-color.sh`)
+- **tmux zoom indicator** — when a pane is zoomed, the status bar turns yellow, the border shows a `▼ ZOOM ▼` label, and (in iTerm2) the terminal background tints (`tmux-zoom-indicator.sh`)
 
 ## Setup
 
