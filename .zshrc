@@ -176,3 +176,12 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 
 
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Use brew's Python 3.13 for gcloud (bundled Python install failed on macOS Tahoe)
+export CLOUDSDK_PYTHON=/opt/homebrew/opt/python@3.13/libexec/bin/python
