@@ -7,15 +7,15 @@ Personal dotfiles for macOS and Linux, featuring Neovim, tmux, zsh (with oh-my-z
 - **zsh** — Shell config with oh-my-zsh, Powerlevel10k theme, zsh-autosuggestions, zsh-syntax-highlighting
 - **Neovim** — Custom config with lazy.nvim
 - **tmux** — Prefix remapped to `Ctrl+a`, vim-style copy mode, TPM plugins
+  - *Session auto-color* — each session's status bar gets a unique color derived from its name (`tmux-session-color.sh`)
+  - *Zoom indicator* — when a pane is zoomed, the status bar turns yellow, the border shows a `▼ ZOOM ▼` label, and the terminal background tints via OSC 11 (`tmux-zoom-indicator.sh`)
 - **yabai** — Tiling window manager (macOS only)
 - **skhd** — Hotkey daemon (macOS only)
-- **tmux session auto-color** — each session's status bar gets a unique color derived from its name (`tmux-session-color.sh`)
-- **tmux zoom indicator** — when a pane is zoomed, the status bar turns yellow, the border shows a `▼ ZOOM ▼` label, and the terminal background tints via OSC 11 (`tmux-zoom-indicator.sh`)
 
 ## Setup
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+git clone https://github.com/mickyngub/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./init.sh
 ```
