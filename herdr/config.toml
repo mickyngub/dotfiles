@@ -1,0 +1,7 @@
+onboarding = false
+
+[theme]
+name = "kanagawa"
+
+[ui.toast]
+delivery = "herdr"
