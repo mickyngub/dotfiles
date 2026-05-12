@@ -1,5 +1,5 @@
 #!/bin/sh
-# Toggle iTerm2 background tint based on tmux zoom state.
+# Toggle terminal background tint (OSC 11) based on tmux zoom state.
 # Sent through tmux DCS passthrough so the escape reaches the terminal emulator.
 
 tty=$(tmux display-message -p '#{pane_tty}')

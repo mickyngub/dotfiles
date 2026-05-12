@@ -5,3 +5,6 @@ name = "kanagawa"
 
 [ui.toast]
 delivery = "herdr"
+
+[ui]
+agent_panel_scope = "current"

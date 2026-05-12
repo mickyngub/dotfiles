@@ -1,8 +1,5 @@
 nvim/nvim
-yabai/yabai
-skhd/skhd
 nvim/plugin/packer_compiled.lua
 .zsh_env_vars
-herdr/sessions/
-herdr/*.log
-herdr/release-notes.json
+.config/herdr/*
+!.config/herdr/config.toml

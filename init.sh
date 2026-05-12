@@ -16,11 +16,10 @@ fi
 
 # ─── Install brew packages ───
 echo "==> Installing brew packages..."
-brew install git neovim tmux ripgrep fd fzf gnu-sed zoxide curl unzip zsh 2>/dev/null || true
+brew install git neovim tmux ripgrep fd fzf zoxide curl unzip zsh 2>/dev/null || true
 
 if [[ "$(uname)" == "Darwin" ]]; then
   brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd 2>/dev/null || true
-  brew install --cask iterm2 2>/dev/null || true
 fi
 
 # ─── Linux: install build tools needed by Homebrew ───
@@ -87,6 +86,7 @@ ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
+ln -sf ~/dotfiles/.config/herdr ~/.config/herdr
 
 if [[ "$(uname)" == "Darwin" ]]; then
   ln -sf ~/dotfiles/yabai ~/.config/yabai
