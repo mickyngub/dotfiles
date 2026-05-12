@@ -10,12 +10,6 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local lsp_signature_setup, lsp_signature = pcall(require, "lsp_signature")
 if not lsp_signature_setup then
 	return
@@ -46,13 +40,34 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>R", "<cmd>LspRestart<CR>", opts)
 	keymap.set("n", "<leader>lsp", "<cmd>LspInfo<CR>", opts)
 
-	-- typescript specific keymaps (e.g. rename file and update imports)
+	-- typescript specific keymaps
 	if client.name == "ts_ls" then
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "<leader>tsc", ":TSC<CR>") -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "<leader>gd", ":TypescriptGoToSourceDefinition<CR>") -- remove unused variables (not in youtube nvim video)
+		keymap.set("n", "<leader>oi", function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports" } },
+				apply = true,
+			})
+		end, opts) -- organize imports
+		keymap.set("n", "<leader>ru", function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.removeUnused.ts" } },
+				apply = true,
+			})
+		end, opts) -- remove unused
+		keymap.set("n", "<leader>gd", function()
+			local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
+			vim.lsp.buf_request(0, "workspace/executeCommand", {
+				command = "_typescript.goToSourceDefinition",
+				arguments = { params.textDocument.uri, params.position },
+			}, function(_, result)
+				if result and result[1] then
+					vim.lsp.util.jump_to_location(result[1], client.offset_encoding)
+				else
+					vim.notify("No source definition found", vim.log.levels.INFO)
+				end
+			end)
+		end, opts) -- go to source definition
+		keymap.set("n", "<leader>tsc", ":TSC<CR>", opts) -- run tsc.nvim
 	end
 end
 
@@ -65,12 +80,10 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
+-- configure typescript server
+lspconfig["ts_ls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 
 -- configure css server

@@ -16,8 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.vimwiki_map_prefix = "<leader>v"
 
-local OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
 vim.cmd([[highlight ConflictAdd guibg=#103235]])
 vim.cmd([[highlight ConflictText guibg=#394b70]])
 
@@ -104,7 +102,6 @@ require("lazy").setup({
 		},
 	},
 	-- enhanced lsp uis
-	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 	-- formatting & linting
 	{
@@ -215,24 +212,6 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	"dstein64/vim-startuptime",
-	-- github copilot
-	"github/copilot.vim",
-	-- zen mode
-	{
-		"folke/zen-mode.nvim",
-		config = function()
-			require("zen-mode").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-				plugins = {
-					tmux = {
-						enabled = true,
-					},
-				},
-			})
-		end,
-	},
 	{
 		"j-hui/fidget.nvim",
 		config = function()
@@ -248,7 +227,7 @@ require("lazy").setup({
 					},
 				},
 				notification = {
-					override_vim_notify = true,
+					override_vim_notify = false,
 				},
 			})
 		end,
@@ -271,12 +250,6 @@ require("lazy").setup({
 		},
 		config = function()
 			require("colorizer").setup()
-		end,
-	},
-	{
-		"chentoast/marks.nvim",
-		config = function()
-			require("marks").setup({})
 		end,
 	},
 	{
@@ -336,39 +309,6 @@ require("lazy").setup({
 		config = function()
 			require("scrollbar").setup({})
 		end,
-	},
-	{
-		"piersolenski/wtf.nvim",
-		config = function()
-			if not OPENAI_API_KEY then
-				print("Please provide an OpenAI API key for wtf plugin.")
-				return
-			end
-		end,
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-		opts = {
-			openai_api_key = OPENAI_API_KEY,
-		},
-		keys = {
-			{
-				"<leader>wtf",
-				mode = { "n", "x" },
-				function()
-					require("wtf").ai()
-				end,
-				desc = "Debug diagnostic with AI",
-			},
-			{
-				mode = { "n" },
-				"<leader>WTF",
-				function()
-					require("wtf").search()
-				end,
-				desc = "Search diagnostic with Google",
-			},
-		},
 	},
 	{
 		"nvim-focus/focus.nvim",
