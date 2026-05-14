@@ -7,4 +7,4 @@ name = "kanagawa"
 delivery = "herdr"
 
 [ui]
-agent_panel_scope = "current"
+agent_panel_scope = "all"
