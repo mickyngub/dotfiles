@@ -121,23 +121,32 @@ function compress_mov() {
   ffmpeg -i "$HOME/Desktop/$1.mov" -qscale 0 "$HOME/Desktop/$1.mp4" && rm "$HOME/Desktop/$1.mov"
 }
 
-# Function to create new tmux sessions if they don't exist and attach to session1 or the first available session
-function create_tmux_sessions_and_attach() {
-    # Check if tmux server is running
-    if ! tmux ls >/dev/null 2>&1; then
-        # Start new tmux sessions in detached mode
-        tmux new-session -d -s nexus
-        tmux new-session -d -s nexus-claude
-        tmux new-session -d -s nexus-terminal
-        tmux new-session -d -s dotfiles
-    fi
+# --- Context launchers (tmux session wraps herdr session) ---
+# Each tmux session sources common + context-specific env files then launches herdr.
+# `work` / `personal` work from outside tmux (attach) or inside another tmux session (switch).
 
-    # Check if nexus exists and attach to it; otherwise, attach to the first available session
-    if tmux has-session -t nexus 2>/dev/null; then
-        tmux attach-session -t nexus
-    else
-        tmux attach-session -t $(tmux ls | head -n 1 | cut -d: -f1)
-    fi
+function _ensure_herdr_session() {
+  local name="$1"
+  tmux has-session -t "$name" 2>/dev/null && return
+  tmux new-session -d -s "$name" \
+    "[ -f ~/.zsh_env_vars ] && source ~/.zsh_env_vars; [ -f ~/.zsh_env_vars.${name} ] && source ~/.zsh_env_vars.${name}; herdr --session ${name}"
+}
+
+function work() {
+  _ensure_herdr_session work
+  if [[ -n "$TMUX" ]]; then tmux switch-client -t work; else tmux attach-session -t work; fi
+}
+
+function personal() {
+  _ensure_herdr_session personal
+  if [[ -n "$TMUX" ]]; then tmux switch-client -t personal; else tmux attach-session -t personal; fi
+}
+
+# Ensure both sessions exist and land in work on first terminal of the day.
+function create_tmux_sessions_and_attach() {
+  _ensure_herdr_session work
+  _ensure_herdr_session personal
+  tmux attach-session -t work
 }
 
 # Only auto-attach when not already inside tmux and in an interactive shell
@@ -185,3 +194,12 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 
 # Use brew's Python 3.13 for gcloud (bundled Python install failed on macOS Tahoe)
 export CLOUDSDK_PYTHON=/opt/homebrew/opt/python@3.13/libexec/bin/python
+
+# Per-tmux-session env overlay — catches raw shells spawned inside tmux:work / tmux:personal
+# outside the herdr launcher's reach. No-op if context env file doesn't exist yet.
+if [[ -n "$TMUX" ]]; then
+  case "$(tmux display-message -p '#S')" in
+    work)     [[ -f ~/.zsh_env_vars.work ]]     && source ~/.zsh_env_vars.work ;;
+    personal) [[ -f ~/.zsh_env_vars.personal ]] && source ~/.zsh_env_vars.personal ;;
+  esac
+fi
