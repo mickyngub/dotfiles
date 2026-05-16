@@ -82,15 +82,15 @@ fi
 echo "==> Creating symlinks..."
 mkdir -p ~/.config
 
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
-ln -sf ~/dotfiles/.config/tmux ~/.config/tmux
-ln -sf ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
-ln -sf ~/dotfiles/.config/herdr ~/.config/herdr
+ln -sfn ~/dotfiles/.zshrc ~/.zshrc
+ln -sfn ~/dotfiles/.config/nvim ~/.config/nvim
+ln -sfn ~/dotfiles/.config/tmux ~/.config/tmux
+ln -sfn ~/dotfiles/.zsh_env_vars ~/.zsh_env_vars
+ln -sfn ~/dotfiles/.config/herdr ~/.config/herdr
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  ln -sf ~/dotfiles/.config/yabai ~/.config/yabai
-  ln -sf ~/dotfiles/.config/skhd ~/.config/skhd
+  ln -sfn ~/dotfiles/.config/yabai ~/.config/yabai
+  ln -sfn ~/dotfiles/.config/skhd ~/.config/skhd
 fi
 
 # ─── Set default shell to zsh ───
