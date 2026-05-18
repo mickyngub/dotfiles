@@ -183,6 +183,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # npm global
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+# bob (neovim version manager) — pinned nvim
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
 
 
 

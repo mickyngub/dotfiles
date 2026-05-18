@@ -19,7 +19,7 @@ Personal dotfiles for macOS and Linux — zsh, Neovim, tmux, yabai, skhd.
 - `~/dotfiles/.zsh_env_vars` → `~/.zsh_env_vars`
 - (macOS only) `.config/yabai`, `.config/skhd` → `~/.config/{yabai,skhd}`
 
-It also installs Homebrew (+ packages), oh-my-zsh + Powerlevel10k, zsh plugins, TPM, and **nvm + Node.js LTS**.
+It also installs Homebrew (+ packages), oh-my-zsh + Powerlevel10k, zsh plugins, TPM, **nvm + Node.js LTS**, and **Neovim 0.10.1 via `bob`** (pinned — bump `NVIM_VERSION` in `init.sh` to upgrade).
 
 ## Commands
 

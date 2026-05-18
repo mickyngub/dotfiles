@@ -16,11 +16,19 @@ fi
 
 # ─── Install brew packages ───
 echo "==> Installing brew packages..."
-brew install git neovim tmux ripgrep fd fzf zoxide curl unzip zsh 2>/dev/null || true
+brew install git tmux ripgrep fd fzf zoxide curl unzip zsh bob 2>/dev/null || true
 
 if [[ "$(uname)" == "Darwin" ]]; then
   brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd 2>/dev/null || true
 fi
+
+# ─── Neovim (pinned via bob) ───
+NVIM_VERSION="0.10.1"
+if ! bob list 2>/dev/null | grep -q "$NVIM_VERSION"; then
+  echo "==> Installing Neovim $NVIM_VERSION via bob..."
+  bob install "$NVIM_VERSION"
+fi
+bob use "$NVIM_VERSION"
 
 # ─── Linux: install build tools needed by Homebrew ───
 if [[ "$(uname)" == "Linux" ]]; then
