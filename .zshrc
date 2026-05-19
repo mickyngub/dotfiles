@@ -1,3 +1,47 @@
+# --- Context launchers (tmux session wraps herdr session) ---
+# Each tmux session sources common + context-specific env files then launches herdr.
+# `work` / `personal` work from outside tmux (attach) or inside another tmux session (switch).
+# This block runs BEFORE p10k instant prompt so the `-t 0` tty test isn't fooled by p10k's
+# stdin redirection (otherwise auto-attach silently no-ops in Ghostty etc.).
+
+function _ensure_herdr_session() {
+  local name="$1"
+  tmux has-session -t "$name" 2>/dev/null && return
+  tmux new-session -d -s "$name" \
+    "[ -f ~/.zsh_env_vars ] && source ~/.zsh_env_vars; [ -f ~/.zsh_env_vars.${name} ] && source ~/.zsh_env_vars.${name}; herdr --session ${name}"
+}
+
+# Plain tmux session for persistent dev servers — no herdr, just a holding area.
+function _ensure_servers_session() {
+  tmux has-session -t servers 2>/dev/null && return
+  tmux new-session -d -s servers
+}
+
+function personal() {
+  _ensure_herdr_session personal
+  if [[ -n "$TMUX" ]]; then tmux switch-client -t personal; else tmux attach-session -t personal; fi
+}
+
+function work() {
+  _ensure_herdr_session work
+  if [[ -n "$TMUX" ]]; then tmux switch-client -t work; else tmux attach-session -t work; fi
+}
+
+# Ensure personal/work/servers sessions exist and land in personal on first terminal of the day.
+function create_tmux_sessions_and_attach() {
+  _ensure_herdr_session personal
+  _ensure_herdr_session work
+  _ensure_servers_session
+  tmux attach-session -t personal
+}
+
+# Only auto-attach when not already inside tmux, in an interactive shell, and on a real tty
+# (avoids "open terminal failed: not a terminal" when login zsh runs without a tty, e.g.
+# Claude Code / IDE-spawned shells where $- contains `i` but stdin isn't a terminal.)
+if [[ -z "$TMUX" && $- == *i* && -t 0 ]]; then
+  create_tmux_sessions_and_attach
+fi
+
 # Enable Powerlevel10k instant prompt (if installed)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -120,40 +164,6 @@ function git() {
 function compress_mov() {
   ffmpeg -i "$HOME/Desktop/$1.mov" -qscale 0 "$HOME/Desktop/$1.mp4" && rm "$HOME/Desktop/$1.mov"
 }
-
-# --- Context launchers (tmux session wraps herdr session) ---
-# Each tmux session sources common + context-specific env files then launches herdr.
-# `work` / `personal` work from outside tmux (attach) or inside another tmux session (switch).
-
-function _ensure_herdr_session() {
-  local name="$1"
-  tmux has-session -t "$name" 2>/dev/null && return
-  tmux new-session -d -s "$name" \
-    "[ -f ~/.zsh_env_vars ] && source ~/.zsh_env_vars; [ -f ~/.zsh_env_vars.${name} ] && source ~/.zsh_env_vars.${name}; herdr --session ${name}"
-}
-
-function work() {
-  _ensure_herdr_session work
-  if [[ -n "$TMUX" ]]; then tmux switch-client -t work; else tmux attach-session -t work; fi
-}
-
-function personal() {
-  _ensure_herdr_session personal
-  if [[ -n "$TMUX" ]]; then tmux switch-client -t personal; else tmux attach-session -t personal; fi
-}
-
-# Ensure both sessions exist and land in work on first terminal of the day.
-function create_tmux_sessions_and_attach() {
-  _ensure_herdr_session work
-  _ensure_herdr_session personal
-  tmux attach-session -t work
-}
-
-# Only auto-attach when not already inside tmux and in an interactive shell
-if [[ -z "$TMUX" && $- == *i* ]]; then
-  create_tmux_sessions_and_attach
-fi
-
 
 alias killv="pkill -9 nvim && pkill -9 eslint_d"
 alias cdnvim="cd ~/.config/nvim"
