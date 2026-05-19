@@ -172,6 +172,11 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+	-- live html/markdown preview with hot-reload
+	{
+		"brianhuster/live-preview.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+	},
 	{
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
