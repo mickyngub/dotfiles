@@ -77,6 +77,8 @@ else
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 fi
+# Activate the default node version so `node`/`pnpm` resolve correctly in every shell
+command -v nvm &>/dev/null && nvm use default --silent &>/dev/null
 
 if [[ "$(uname)" == "Darwin" ]]; then
   alias arm="env /usr/bin/arch --arm64 /bin/zsh --login"

@@ -72,12 +72,25 @@ if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
 fi
 
 # ─── nvm + Node.js ───
+NODE_VERSION="24"
 export NVM_DIR="$HOME/.nvm"
 if [[ ! -d "$NVM_DIR" ]]; then
   echo "==> Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  nvm install --lts
+fi
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if ! nvm ls "$NODE_VERSION" &>/dev/null; then
+  echo "==> Installing Node.js $NODE_VERSION..."
+  nvm install "$NODE_VERSION"
+fi
+nvm alias default "$NODE_VERSION"
+nvm use default
+
+# ─── Corepack (pnpm version manager bundled with Node) ───
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if command -v corepack &>/dev/null; then
+  echo "==> Enabling corepack (pnpm)..."
+  corepack enable pnpm
 fi
 
 # ─── Environment variables template ───

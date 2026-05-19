@@ -25,7 +25,7 @@ That's it. The init script handles everything:
 - Installs Homebrew (if needed) and all packages via brew on both macOS and Linux
 - macOS extras: yabai, skhd
 - Linux extras: build tools via system package manager (for Homebrew compatibility)
-- Installs oh-my-zsh, Powerlevel10k, zsh plugins, TPM, nvm + Node.js LTS, and creates all symlinks
+- Installs oh-my-zsh, Powerlevel10k, zsh plugins, TPM, nvm + Node.js 24 (with corepack enabled for pnpm), and creates all symlinks
 
 After setup, open a new terminal and:
 - Press `Ctrl+a` then `Shift+I` inside tmux to install tmux plugins
