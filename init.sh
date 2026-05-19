@@ -16,7 +16,7 @@ fi
 
 # ─── Install brew packages ───
 echo "==> Installing brew packages..."
-brew install git tmux ripgrep fd fzf zoxide curl unzip zsh bob 2>/dev/null || true
+brew install git tmux ripgrep fd fzf zoxide curl unzip zsh bob uv 2>/dev/null || true
 
 if [[ "$(uname)" == "Darwin" ]]; then
   brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd 2>/dev/null || true
